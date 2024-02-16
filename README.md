@@ -1,3 +1,15 @@
+ var user = _context.Пользователь.FirstOrDefault(o => o.Логин == tbLog.Text && o.Пароль == tbPass.Password);
+ if (user != null)
+ {
+     WIn_.EditWin a = new WIn_.EditWin();
+     a.Show();
+     this.Close();
+ }
+ else
+ {
+     MessageBox.Show("Не правильный логин или пароль");
+ }
+------------------------------------------------------------------------------------------------------------
 try
 {
     using(var _context = new DB_.demo_ver5Entities())
