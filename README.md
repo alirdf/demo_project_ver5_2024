@@ -42,9 +42,8 @@ catch { MessageBox.Show("Сохранено с ошибокой "); }
              _context.SaveChanges() ;
              MessageBox.Show("Удалено");
              dtProduct.ItemsSource = _context.TbТовары.Include(mk => mk.TbКатегории).ToList();
-
-         }
-     }
+             }
+        }
  }catch { MessageBox.Show("Удалено с ошибокой "); }
 -------------------------------------------------------------------------------------------
                     </StackPanel>
