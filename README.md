@@ -52,3 +52,7 @@ catch { MessageBox.Show("Сохранено с ошибокой "); }
         </ListView.ItemTemplate>
     </ListView>
 </ScrollViewer>
+-------------------------------------------------------------------------------------
+        <DataGridTextColumn Header="НазвПуть_фотоание" Binding="{Binding Путь_фото}" />
+    </DataGrid.Columns>
+</DataGrid>
