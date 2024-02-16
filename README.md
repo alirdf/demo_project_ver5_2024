@@ -20,3 +20,10 @@
      MessageBox.Show("Удалено");
      dtProduct.ItemsSource = _context.TbТовары.Include(mk => mk.TbКатегории).ToList();
  }
+-------------------------------------------------------------------------------------------
+                    </StackPanel>
+                </StackPanel>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ScrollViewer>
