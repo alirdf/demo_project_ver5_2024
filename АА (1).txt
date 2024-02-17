@@ -1,0 +1,53 @@
+<Grid > 
+       <Grid.RowDefinitions> 
+           <RowDefinition Height="59*"/> 
+           <RowDefinition Height="375*"/> 
+       </Grid.RowDefinitions> 
+       <DataGrid x:Name="ab" Grid.Row="1" > 
+           <DataGrid.Columns> 
+               <DataGridTextColumn Header="Артикул" Binding="{Binding Артикул}"/> 
+               <DataGridTextColumn Header="Название" Binding="{Binding Название}"/> 
+               <DataGridTextColumn Header="Стоимость" Binding="{Binding Стоимость}"/> 
+               <DataGridTextColumn Header="Изображение" Binding="{Binding Изображение}"/> 
+               <DataGridTextColumn Header="Заказы" Binding="{Binding Заказы}"/> 
+                
+           </DataGrid.Columns> 
+       </DataGrid> 
+       <TextBox HorizontalAlignment="Left" Margin="63,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" x:Name="TbPoisk" TextChanged="TbPoisk_TextChanged"/> 
+ 
+   </Grid>
+/////////////////////////////////////////////////////////////
+
+
+public partial class Window1 : Window {
+     DBXYNJAEntities _context = new DBXYNJAEntities();     public Window1()
+
+     {         InitializeComponent();
+     }
+     private void Button_Click(object sender, RoutedEventArgs e)     {
+         var user = _context.Пользователь.FirstOrDefault(x => x.Логин == tbox_login.Text && x.Пароль == pbox_pass.Password); // Сравнивает инфу из текстбоксов с инфой из БД
+         if (user != null) // если нашел че то         {
+             MessageBox.Show($"Вы вошли как: {user.Логин}");
+             MainWindow window1 = new MainWindow();             window1.Show();
+             Close();         }
+         else // если не нашел че то         {
+             MessageBox.Show("Вы ввели не правильный пароль, сосите");         }
+     } }    }
+
+///////////////////////////////////////////////////////////////////////////
+ 
+public partial class MainWindow : Window
+ { 
+     DBXYNJAEntities _context = new DBXYNJAEntities();
+
+     public MainWindow()
+     {
+         InitializeComponent();
+         GridMainwindow.ItemsSource = _context.Товары.ToList();
+     }
+
+     private void Tb_TextChanged(object sender, TextChangedEventArgs e)
+     {
+         GridMainwindow.ItemsSource = _context.Товары.Where(x=> x.Артикул. Contains(Tb.Text)).ToList();  
+     }
+ }

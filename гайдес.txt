@@ -1,0 +1,44 @@
+1. Пишем GetContext(); 
+public static demoezEntities _context = new demoezEntities(); // эта хуйня сначала (обязательно)
+
+ public static demoezEntities GetContext() // делаем этот паршивый метод для получения инфы из БД
+ {
+     if (_context != null)
+     {
+         _context = new demoezEntities();
+     }
+     return _context;
+ }
+
+2. Пишем авторизацию 
+private void but_vhod_Click(object sender, RoutedEventArgs e) // кнопка для входа в прогу
+{
+    var user = demoezEntities.GetContext().user.FirstOrDefault(x => x.login == tbox_login.Text && x.pass == pbox_pass.Password); // Сравнивает инфу из текстбоксов с инфой из БД
+
+    if (user != null) // если нашел че то
+    {
+        MessageBox.Show($"Вы вошли как: {user.login}");
+
+        okna_.Window1 window1 = new okna_.Window1();
+            window1.Show();
+        Close();
+    }
+    else // если не нашел че то
+    {
+        MessageBox.Show("Вы ввели не правильный пароль");
+    }
+}
+
+3. Получаем контекст для дата грида в главном меню
+public Window1()
+{
+    InitializeComponent();
+
+    dgrid_main.ItemsSource = demoezEntities.GetContext().tovar.ToList(); // Получаем контекст с дата грида в главном меню
+}
+
+4. Делаем поиск
+private void tbox_poisk_TextChanged(object sender, TextChangedEventArgs e) // Поиск по названию
+{
+    dgrid_main.ItemsSource = demoezEntities.GetContext().tovar.Where(x  => x.nazvanie.Contains(tbox_poisk.Text)).ToList();
+}
