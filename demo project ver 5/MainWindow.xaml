@@ -17,6 +17,7 @@
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
             <TextBlock Margin="5" FontFamily="Arial Black" >Найти</TextBlock>
             <TextBox Margin="5" MinWidth="100" x:Name="tbSearch" TextChanged="tbSearch_TextChanged"/>
+            <ComboBox x:Name="cbSearch" SelectionChanged="cbSearch_SelectionChanged" DisplayMemberPath="TbКатегории.Название"/>
             <Button Style="{StaticResource Button}" Margin="5" x:Name="btOpenEdit" Click="btOpenEdit_Click" >Редактировать</Button>
         </StackPanel>
         <ScrollViewer  Grid.Row="1">
@@ -26,7 +27,7 @@
                         <StackPanel  Orientation="Horizontal">
                             <Viewbox>
                                 <Image Height="150" Stretch="Uniform" Source="{Binding Путь_фото}"/>
-                            </Viewbox>
+                            </Viewbox>  
                             <StackPanel Orientation="Vertical">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Margin="5">Название </TextBlock>
@@ -45,12 +46,10 @@
                                     <TextBlock Margin="5" Text="{Binding TbКатегории.Название}"/>
                                 </StackPanel>
                             </StackPanel>
-                            
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
         </ScrollViewer>
     </Grid>
 </Window>
