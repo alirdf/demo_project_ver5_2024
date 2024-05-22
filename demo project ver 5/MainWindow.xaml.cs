@@ -74,22 +74,7 @@ namespace demo_project_ver_5
        
         private void cbSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Uppcat();
-            //using (var _context = new DB_.demo_ver5Entities())
-            //{
-            //    int selectedIndex = cbSearch.SelectedIndex;
-            //    if (selectedIndex >= 0) 
-            //    {
-            //        var selectedCategory = _context.TbКатегории
-            //            .Include(c => c.TbТовары)
-            //            .Single(c => c.Код_категории == selectedIndex);
-            //        liProduct.ItemsSource = selectedCategory.TbТовары.ToList();
-            //    }
-            //    else
-            //    {
-            //        liProduct.ItemsSource = _context.TbТовары.Include(v => v.TbКатегории).ToList();
-            //    }
-            //}
+           
         }
     }
 }

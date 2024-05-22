@@ -15,9 +15,16 @@ namespace demo_project_ver_5.DB_
     
     public partial class demo_ver5Entities : DbContext
     {
+        private static demo_ver5Entities _context;
         public demo_ver5Entities()
             : base("name=demo_ver5Entities")
         {
+        }
+        public static demo_ver5Entities GetContext()
+        {
+            if (_context == null)
+                _context = new demo_ver5Entities();
+            return _context;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

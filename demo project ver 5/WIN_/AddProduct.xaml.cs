@@ -8,51 +8,26 @@ namespace demo_project_ver_5.WIN_
 {
     public partial class AddProduct : Window
     {
-        private List<TbКатегории> categories;
 
-        private TbТовары _товары = new TbТовары();
+        private TbТовары currentТовар = new TbТовары();
         public AddProduct(TbТовары товары)
         {
-            DataContext = товары;
+            if (товары != null)
+                currentТовар = товары;
+            DataContext = currentТовар;
             InitializeComponent();
-            LoadCategories();
-        }
-
-        private void LoadCategories()
-        {
-            using (var _context = new DB_.demo_ver5Entities())
-            {
-                categories = _context.TbКатегории.ToList();
-                cbCategories.ItemsSource = categories;
-            }
+            cbCategories.ItemsSource = demo_ver5Entities.GetContext().TbКатегории.ToList();
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if(_товары.)
-            try
-            {
-                using (var _context = new DB_.demo_ver5Entities())
-                {
-                    var newProduct = new TbТовары
-                    {
-                        Название = tbName.Text,
-                        Описание = tbDescription.Text,
-                        Цена = decimal.Parse(tbPrice.Text),
-                        Категория = (cbCategories.SelectedItem as TbКатегории).Код_категории,
-                        Путь_фото = tbPhotoPath.Text
-                    };
+            if (currentТовар.Код_товара == 0)
+                demo_ver5Entities.GetContext().TbТовары.Add(currentТовар);
 
-                    _context.TbТовары.Add(newProduct);
-                    _context.SaveChanges();
-                    MessageBox.Show("Товар добавлен успешно.");
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при добавлении товара: {ex.Message}");
-            }
+            demo_ver5Entities.GetContext().SaveChanges();
+            MessageBox.Show("Информация сохранена");
+            this.Close();
+
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)

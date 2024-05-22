@@ -32,7 +32,12 @@
         <TextBox Text="{Binding Цена}" Grid.Row="2" Grid.Column="1" x:Name="tbPrice" Margin="5" />
 
         <Label Grid.Row="3" Grid.Column="0" Content="Категория:" Margin="5" />
-        <ComboBox  SelectedItem="{Binding TbКатегории}" DisplayMemberPath="Название" IsSynchronizedWithCurrentItem="True" Grid.Row="3" Grid.Column="1" x:Name="cbCategories" Margin="5" />
+        <ComboBox  
+            SelectedItem="{Binding TbКатегории}" 
+            DisplayMemberPath="Название" 
+            IsSynchronizedWithCurrentItem="True" 
+            Grid.Row="3" Grid.Column="1" 
+            x:Name="cbCategories" Margin="5" />
 
         <Label Grid.Row="4" Grid.Column="0" Content="Путь к фото:" Margin="5" />
         <TextBox Text="{Binding Путь_фото}" Grid.Row="4" Grid.Column="1" x:Name="tbPhotoPath" Margin="5" />
