@@ -19,6 +19,7 @@
             <TextBlock Margin="5" FontFamily="Arial Black" >Найти</TextBlock>
             <TextBox Margin="5" MinWidth="100" x:Name="tbSearch" TextChanged="tbSearch_TextChanged"/>
         </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
         <ComboBox Grid.Row="1" Margin="5" x:Name="cbCategories" SelectionChanged="cbCategories_SelectionChanged">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
@@ -26,14 +27,25 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
+        <Button Margin="5" Grid.Row="1" Content="добавить" Click="Button_Click"/>
+            
+        </StackPanel>
         <DataGrid Grid.Row="2" x:Name="dtProduct" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding Название}" />
                 <DataGridTextColumn Header="Описание" Binding="{Binding Описание}" />
                 <DataGridTextColumn Header="Цена" Binding="{Binding Цена    }" />
                 <DataGridTextColumn Header="Код_Категория" Binding="{Binding Категория}" />
-                <DataGridTextColumn IsReadOnly="True" Header="Категория" Binding="{Binding TbКатегории.Название}" />
+                <DataGridComboBoxColumn Header="Категория" x:Name="cbCam"
+                                SelectedItemBinding="{Binding TbКатегории}" DisplayMemberPath="Название"/>
                 <DataGridTextColumn Header="НазвПуть_фотоание" Binding="{Binding Путь_фото}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="Button_Click_1" Content="Редактировать"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">

@@ -27,6 +27,8 @@ namespace demo_project_ver_5.WIN_
                 dtProduct.ItemsSource = _context.TbТовары.Include(mk => mk.TbКатегории).ToList();
                 categories = _context.TbКатегории.ToList();
                 cbCategories.ItemsSource = categories;
+                cbCam.ItemsSource = categories;
+                
             }
         }
 
@@ -93,6 +95,19 @@ namespace demo_project_ver_5.WIN_
                     .Where(t => t.Категория == selectedCategory.Код_категории)
                     .ToList();
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var addProductWindow = new AddProduct(null);
+            addProductWindow.ShowDialog();
+            LoadData(); // Refresh the data grid after adding a new product
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            var addProductWindow = new AddProduct((sender as Button).DataContext as TbТовары);
+            addProductWindow.ShowDialog();
         }
     }
 }
