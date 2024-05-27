@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:demo_project_ver_5.WIN_"
         mc:Ignorable="d"
+        
         Title="Редактирвоание" Height="450" Width="800">
     <Window.Icon>
         <BitmapImage UriSource="C:\Users\alir2\OneDrive\Documents\iphone.jpg"/>

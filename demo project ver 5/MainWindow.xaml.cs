@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data.Entity;
 using demo_project_ver_5.DB_;
+using demo_project_ver_5.WIN_;
 
 namespace demo_project_ver_5
 {
@@ -25,44 +26,45 @@ namespace demo_project_ver_5
         public MainWindow()
         {
             InitializeComponent();
-            using(var _context = new DB_.demo_ver5Entities())
-            {
-                
-                var alltyp = _context.TbКатегории.ToList();
-                alltyp.Insert(0, new DB_.TbКатегории
-                {
-                    Название = "все типы"
-                });
 
-                cbSearch.ItemsSource = alltyp;
-                cbSearch.SelectedIndex = 0;
-                liProduct.ItemsSource = _context.TbТовары.Include(v=>v.TbКатегории).ToList();
-                //cbSearch.ItemsSource = _context.TbТовары.Include(v => v.TbКатегории).ToList();
-            }
+
+            var alltyp = demo_ver5Entities.GetContext().TbКатегории.ToList();
+            alltyp.Insert(0, new DB_.TbКатегории
+            {
+                Название = "Все типы"
+            });
+
+            cbCategories.ItemsSource = alltyp;
+            cbCategories.SelectedIndex = 0;
+            liProduct.ItemsSource = demo_ver5Entities.GetContext().TbТовары.Include(v => v.TbКатегории).ToList();
+            //cbCategories.ItemsSource = _context.TbТовары.Include(v => v.TbКатегории).ToList();
+
         }
-        private void Uppcat()
+
+
+        private void UpdateProductList()
         {
-            using (var _context = new DB_.demo_ver5Entities())
+            var selectedCategory = cbCategories.SelectedItem as TbКатегории;
+            IQueryable<TbТовары> query = demo_ver5Entities.GetContext().TbТовары.Include(mk => mk.TbКатегории);
+
+            if (selectedCategory.Код_категории != 0)
             {
-                //var datacater = _context.TbКатегории.ToList();
-                //if (cbSearch.SelectedIndex > 0) ;
-                //datacater = datacater.Where(p => p.TbТовары.Contains(cbSearch.SelectedItem as TbКатегории)).ToList();
-                //int selectedCategoryId = (cbSearch.SelectedItem as TbКатегории)?.Код_категории ?? 0; 
-                //datacater = datacater.Where(p => p.Код_категории == selectedCategoryId).ToList();
+                query = query.Where(t => t.Категория == selectedCategory.Код_категории);
             }
-            
+
+            if (!string.IsNullOrEmpty(tbSearch.Text))
+            {
+                query = query.Where(t => t.Название.Contains(tbSearch.Text) ||
+                                        t.TbКатегории.Название.Contains(tbSearch.Text) ||
+                                        t.Описание.Contains(tbSearch.Text));
+            }
+            liProduct.ItemsSource = query.ToList();
         }
 
-      
 
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            using(var _context = new DB_.demo_ver5Entities())
-            {
-                liProduct.ItemsSource = _context.TbТовары.Include(mk=>mk.TbКатегории).Where(mk=>mk.Название.Contains(tbSearch.Text)||
-                mk.TbКатегории.Название.Contains(tbSearch.Text)||
-                mk.Описание.Contains(tbSearch.Text)).ToList();  
-            }
+            UpdateProductList();
         }
 
         private void btOpenEdit_Click(object sender, RoutedEventArgs e)
@@ -71,10 +73,20 @@ namespace demo_project_ver_5
             a.ShowDialog();
         }
 
-       
-        private void cbSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void cbCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           
+            UpdateProductList();
+        }
+
+
+        private void cbSortAscending_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void cbSortAscending_Unchecked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

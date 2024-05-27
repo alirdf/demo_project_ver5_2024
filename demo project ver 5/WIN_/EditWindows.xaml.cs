@@ -13,14 +13,28 @@ namespace demo_project_ver_5.WIN_
     public partial class EditWindows : Window
     {
         private List<TbКатегории> categories;
+        //private int selectedCategory = 1;
 
         public EditWindows()
         {
             InitializeComponent();
+            
             cbCam.ItemsSource = demo_ver5Entities.GetContext().TbКатегории.ToList();
+           
             dtProduct.ItemsSource = demo_ver5Entities.GetContext().TbТовары.ToList();
             cbCategories.ItemsSource = demo_ver5Entities.GetContext().TbКатегории.ToList();
+           
         }
+        //private void Page_Loaded(object sender, RoutedEventArgs e)
+        //{
+        //    cbCategories.Ite.Add("Все типы");
+        //    foreach (var item in DB_.demo_ver5Entities.GetContext().TbКатегории.ToList())
+        //    {
+        //        cbCategories.Items.Add(item.Название);
+        //    }
+        //    cbCategories.SelectedIndex = 0;
+        //}
+
 
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -75,7 +89,9 @@ namespace demo_project_ver_5.WIN_
 
         private void cbCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
             var selectedCategory = cbCategories.SelectedItem as TbКатегории;
+
             dtProduct.ItemsSource = demo_ver5Entities.GetContext().
             TbТовары.Include(mk => mk.TbКатегории)
             .Where(t => t.Категория == selectedCategory.Код_категории).ToList();
