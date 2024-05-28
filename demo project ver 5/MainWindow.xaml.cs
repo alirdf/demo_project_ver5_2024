@@ -58,14 +58,22 @@ namespace demo_project_ver_5
                                         t.TbКатегории.Название.Contains(tbSearch.Text) ||
                                         t.Описание.Contains(tbSearch.Text));
             }
+
+            switch (cbSort.SelectedIndex)
+            {
+                case 0: 
+                    break;
+                case 1:
+                    query = query.OrderByDescending(t => t.Название);
+                    break;
+                case 2: 
+                    query = query.OrderBy(t => t.Название);
+                    break;
+            }
+
             liProduct.ItemsSource = query.ToList();
         }
 
-
-        private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            UpdateProductList();
-        }
 
         private void btOpenEdit_Click(object sender, RoutedEventArgs e)
         {
@@ -73,20 +81,27 @@ namespace demo_project_ver_5
             a.ShowDialog();
         }
 
+        private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateProductList();
+        }
+
+
         private void cbCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             UpdateProductList();
         }
 
 
-        private void cbSortAscending_Checked(object sender, RoutedEventArgs e)
+        private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            UpdateProductList();
         }
 
-        private void cbSortAscending_Unchecked(object sender, RoutedEventArgs e)
+        private void btAuto_Click(object sender, RoutedEventArgs e)
         {
-
+            WIN_.Auto a = new Auto();
+            a.ShowDialog();
         }
     }
 }

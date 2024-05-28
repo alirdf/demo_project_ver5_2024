@@ -14,14 +14,50 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <TextBlock Margin="5" FontFamily="Arial Black" >Найти</TextBlock>
-            <TextBox Margin="5" MinWidth="100" x:Name="tbSearch" TextChanged="tbSearch_TextChanged"/>
-            <ComboBox Margin="5" x:Name="cbCategories" SelectionChanged="cbCategories_SelectionChanged" DisplayMemberPath="Название"/>
-            
+        <StackPanel 
+            Grid.Row="0" 
+            Orientation="Horizontal" 
+            HorizontalAlignment="Left" 
+            VerticalAlignment="Center">
+            <TextBlock 
+                Margin="5" 
+                FontFamily="Arial Black"
+                Text="Найти"/>
+            <TextBox 
+                Margin="5" 
+                MinWidth="100" 
+                x:Name="tbSearch" 
+                TextChanged="tbSearch_TextChanged"/>
+            <ComboBox 
+                Margin="5" 
+                x:Name="cbCategories" 
+                SelectionChanged="cbCategories_SelectionChanged" 
+                DisplayMemberPath="Название"/>
+            <ComboBox 
+                Margin="5" 
+                x:Name="cbSort" 
+                SelectionChanged="cbSort_SelectionChanged">
+                <ComboBoxItem>Сброс сортировки</ComboBoxItem>
+                <ComboBoxItem>Сортировать по возрастанию</ComboBoxItem>
+                <ComboBoxItem>Сортировать по убыванию</ComboBoxItem>
+            </ComboBox>
 
 
-            <Button Style="{StaticResource Button}" Margin="5" x:Name="btOpenEdit" Click="btOpenEdit_Click" >Редактировать</Button>
+            <Button Foreground="White"
+                    Background="DarkOrange"
+                    FontFamily="arial black"
+                    Margin="5"
+                    x:Name="btOpenEdit"
+                    Click="btOpenEdit_Click"
+                    Content="Редактировать"/>
+            <Button 
+                Foreground="White"
+                Background="DarkOrange"
+                FontFamily="arial black"
+                Margin="5"
+                x:Name="btAuto"
+                Click="btAuto_Click"
+                Content="Вход"/>
         </StackPanel>
         <ScrollViewer  Grid.Row="1">
             <ListView x:Name="liProduct">
@@ -29,7 +65,9 @@
                     <DataTemplate>
                         <StackPanel  Orientation="Horizontal">
                             <Viewbox>
-                                <Image Height="150" Stretch="Uniform" Source="{Binding Путь_фото}"/>
+                                <Image Height="150" 
+                                       Stretch="Uniform" 
+                                       Source="{Binding Путь_фото}"/>
                             </Viewbox>  
                             <StackPanel Orientation="Vertical">
                                 <StackPanel Orientation="Horizontal">
