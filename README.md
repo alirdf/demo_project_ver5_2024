@@ -1,58 +1,10 @@
- var user = _context.Пользователь.FirstOrDefault(o => o.Логин == tbLog.Text && o.Пароль == tbPass.Password);
- if (user != null)
- {
-     WIn_.EditWin a = new WIn_.EditWin();
-     a.Show();
-     this.Close();
- }
- else
- {
-     MessageBox.Show("Не правильный логин или пароль");
- }
-------------------------------------------------------------------------------------------------------------
-try
-{
-    using(var _context = new DB_.demo_ver5Entities())
-    {
-        for(int i = 0; i<dtProduct.Items.Count -1; i++)
-        {
-            TbТовары tb = dtProduct.Items[i] as TbТовары;
-            _context.TbТовары.AddOrUpdate(tb);
-            _context.SaveChanges();
-        }
-        MessageBox.Show("Сохранено ");
-        dtProduct.ItemsSource = _context.TbТовары.Include(mk => mk.TbКатегории).ToList();
-    }
-}
-catch { MessageBox.Show("Сохранено с ошибокой "); }
-----------------------------------------------------------------------------------------------------
-  try
- {
-     using(var _context = new DB_.demo_ver5Entities())
-     {
-        var r1 = dtProduct.SelectedItems.Cast<TbТовары>().ToList();
-        if(MessageBox.Show($" Точно удалить {r1.Count} элементов", "Внимание" , 
-            MessageBoxButton.YesNo , 
-            MessageBoxImage.Question)
-             ==MessageBoxResult.Yes)
-         {
-            var r2 = r1.Select(m => m.Код_товара).ToList();
-            var r3 = _context.TbТовары.Where(m => r2.Contains(m.Код_товара)).ToList();
-             _context.TbТовары.RemoveRange(r3);
-             _context.SaveChanges() ;
-             MessageBox.Show("Удалено");
-             dtProduct.ItemsSource = _context.TbТовары.Include(mk => mk.TbКатегории).ToList();
-             }
-        }
- }catch { MessageBox.Show("Удалено с ошибокой "); }
--------------------------------------------------------------------------------------------
-                    </StackPanel>
-                </StackPanel>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
-</ScrollViewer>
-<DataGridTextColumn Header="НазвПуть_фотоание" Binding="{Binding Путь_фото}" />
-    </DataGrid.Columns>
-</DataGrid>
-        
+![image](https://github.com/alirdf/demo_project_ver5_2024/assets/114728265/1fd19069-642c-4197-aae3-7181898bcdd0)
+![image](https://github.com/alirdf/demo_project_ver5_2024/assets/114728265/81213558-2b30-45bf-9641-03a5b189457e)
+![image](https://github.com/alirdf/demo_project_ver5_2024/assets/114728265/f5fb0b29-3cde-49c1-9944-ab3a153ffd8a)
+![image](https://github.com/alirdf/demo_project_ver5_2024/assets/114728265/15dd622e-c844-4001-8f2e-94576d0a1cf0)
+![image](https://github.com/alirdf/demo_project_ver5_2024/assets/114728265/eca24d74-2dbe-47b4-a37f-b5b706856069)
+![image](https://github.com/alirdf/demo_project_ver5_2024/assets/114728265/76df6473-8965-46d2-9d5c-7d928b432996)
+![image](https://github.com/alirdf/demo_project_ver5_2024/assets/114728265/d7930c3b-42d2-4c9a-b677-85af38fb07d7)
+![image](https://github.com/alirdf/demo_project_ver5_2024/assets/114728265/478eb4f3-2034-4f9d-8780-628c9b20d818)
+![image](https://github.com/alirdf/demo_project_ver5_2024/assets/114728265/e9341d77-943a-42e3-ac03-321b69b55b30)
+![image](https://github.com/alirdf/demo_project_ver5_2024/assets/114728265/47b2b08f-8a0e-4792-82bf-8b900b2cb9b3)
