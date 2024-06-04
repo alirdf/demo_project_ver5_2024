@@ -9,3 +9,5 @@
 ![image](https://github.com/alirdf/demo_project_ver5_2024/assets/114728265/e9341d77-943a-42e3-ac03-321b69b55b30)
 ![image](https://github.com/alirdf/demo_project_ver5_2024/assets/114728265/47b2b08f-8a0e-4792-82bf-8b900b2cb9b3)
 ![image](https://github.com/alirdf/demo_project_ver5_2024/assets/114728265/44010013-6167-4f5e-906a-9ee4efc249f2)
+![image](https://github.com/alirdf/demo_project_ver5_2024/assets/114728265/23e2a4e7-da6b-41ec-8ee5-78e0945bd905)
+![image](https://github.com/alirdf/demo_project_ver5_2024/assets/114728265/0b8c22d8-7773-4b38-98b5-2446443799a4)
